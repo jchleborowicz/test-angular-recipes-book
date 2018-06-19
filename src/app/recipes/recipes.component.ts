@@ -10,7 +10,7 @@ export class RecipesComponent {
 
   selectedRecipe: Recipe;
 
-  onSelectRecipe(recipe: Recipe) {
+  onRecipeSelected(recipe: Recipe) {
     this.selectedRecipe = recipe;
   }
 }

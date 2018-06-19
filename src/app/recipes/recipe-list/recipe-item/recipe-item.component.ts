@@ -9,10 +9,10 @@ import {Recipe} from '../../../shared/recipe.model';
 export class RecipeItemComponent {
 
   @Input() recipe: Recipe;
-  @Output() recipeClicked = new EventEmitter<Recipe>();
+  @Output() recipeSelected = new EventEmitter<void>();
 
-  onRecipeClicked() {
-    this.recipeClicked.emit(this.recipe);
+  onSelected() {
+    this.recipeSelected.emit();
   }
 
 }

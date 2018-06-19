@@ -9,7 +9,8 @@ import {Recipe} from '../../shared/recipe.model';
 })
 export class RecipeListComponent {
 
-  @Output() recipeClicked = new EventEmitter<Recipe>();
+  @Output() recipeSelected = new EventEmitter<Recipe>();
+
   recipes: Recipe[] = [
     new Recipe('Hamburger', 'Very tasty hamburger',
       'https://www.maxpixel.net/static/photo/640/Sandwich-Meal-Lunch-Hamburger-Cheeseburger-Food-31775.jpg'),
@@ -18,6 +19,6 @@ export class RecipeListComponent {
   ];
 
   onRecipeSelected(recipe: Recipe) {
-    this.recipeClicked.emit(recipe);
+    this.recipeSelected.emit(recipe);
   }
 }
