@@ -9,11 +9,11 @@ import {Ingredient} from '../../shared/ingredient.model';
 export class ShoppingEditComponent {
 
   @Output() ingredientAdded = new EventEmitter<Ingredient>();
-  @ViewChild('nameInput') nameInput: ElementRef;
-  @ViewChild('amountInput') amountInput: ElementRef;
+  @ViewChild('nameInput') nameInputRef: ElementRef;
+  @ViewChild('amountInput') amountInputRef: ElementRef;
 
-  onIngredientAdded() {
-    this.ingredientAdded.emit(new Ingredient(this.nameInput.nativeElement.value,
-      this.amountInput.nativeElement.value));
+  onAddItem() {
+    this.ingredientAdded.emit(new Ingredient(this.nameInputRef.nativeElement.value,
+      this.amountInputRef.nativeElement.value));
   }
 }
