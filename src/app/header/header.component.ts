@@ -9,7 +9,7 @@ export class HeaderComponent {
 
   @Output() contentChange = new EventEmitter<string>();
 
-  onMenuItem(name: string) {
+  onSelect(name: string) {
     this.contentChange.emit(name);
   }
 }
