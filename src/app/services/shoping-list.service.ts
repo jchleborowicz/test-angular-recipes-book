@@ -8,7 +8,7 @@ export class ShopingListService {
 
   ingredientsChanged = new EventEmitter<void>();
 
-  ingredients: Ingredient[] = [
+  private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10)
   ];
@@ -22,6 +22,6 @@ export class ShopingListService {
   }
 
   getIngredients(): Ingredient[] {
-    return this.ingredients;
+    return this.ingredients.slice();
   }
 }
