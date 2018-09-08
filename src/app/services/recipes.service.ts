@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {Recipe} from '../shared/recipe.model';
 import {Ingredient} from '../shared/ingredient.model';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,8 @@ export class RecipesService {
       ])
   ];
 
+  recipesChanged = new Subject<Recipe[]>();
+
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
@@ -33,4 +36,26 @@ export class RecipesService {
     return this.recipes[index];
   }
 
+  /*
+   * Returns new recipe id.
+   */
+  addRecipe(recipe: Recipe): number {
+    this.recipes.push(recipe);
+    this.fireRecipesChanged();
+    return this.recipes.length - 1;
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.fireRecipesChanged();
+  }
+
+  private fireRecipesChanged() {
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(recipeId: number) {
+    this.recipes.splice(recipeId, 1);
+    this.fireRecipesChanged();
+  }
 }

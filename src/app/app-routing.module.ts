@@ -18,7 +18,7 @@ const appRoutes: Routes = [
     ]
   },
   {path: 'shopping-list', component: ShoppingListComponent},
-  {path: '**', redirectTo: '/recipes'}
+  {path: '**', redirectTo: '/recipes/0/edit'}
 ];
 
 @NgModule({
