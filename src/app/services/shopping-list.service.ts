@@ -15,9 +15,6 @@ export class ShoppingListService {
     new Ingredient('Tomatoes', 10)
   ];
 
-  constructor() {
-  }
-
   addIngredient(ingredient: Ingredient): void {
     this.ingredients.push(ingredient);
     this.ingredientsChanged.next();
@@ -33,16 +30,26 @@ export class ShoppingListService {
 
   addIngredients(newIngredients: Ingredient[]) {
     this.ingredients.push(...newIngredients);
-    this.ingredientsChanged.next();
+    this.fireIngredientsChanged();
   }
 
   updateIngredient(index: number, ingredient: Ingredient) {
     this.ingredients[index] = ingredient;
-    this.ingredientsChanged.next();
+    this.fireIngredientsChanged();
   }
 
   deleteIngredient(index: number) {
     this.ingredients.splice(index, 1);
+    this.fireIngredientsChanged();
+  }
+
+  private fireIngredientsChanged() {
     this.ingredientsChanged.next();
   }
+
+  setIngredients(ingredients: Ingredient[]) {
+    this.ingredients = ingredients;
+    this.fireIngredientsChanged();
+  }
+
 }

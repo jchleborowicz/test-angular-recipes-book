@@ -58,4 +58,9 @@ export class RecipesService {
     this.recipes.splice(recipeId, 1);
     this.fireRecipesChanged();
   }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.fireRecipesChanged();
+  }
 }
