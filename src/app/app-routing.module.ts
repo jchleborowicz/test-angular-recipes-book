@@ -5,6 +5,9 @@ import {ShoppingListComponent} from './shopping-list/shopping-list.component';
 import {RecipeDetailComponent} from './recipes/recipe-detail/recipe-detail.component';
 import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
+import {SignupComponent} from './auth/sigunup/signup.component';
+import {SigninComponent} from './auth/sigunin/signin.component';
+import {AuthGuard} from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -12,13 +15,15 @@ const appRoutes: Routes = [
     component: RecipesComponent,
     children: [
       {path: '', component: RecipeStartComponent},
-      {path: 'new', component: RecipeEditComponent},
+      {path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard]},
       {path: ':id', component: RecipeDetailComponent},
-      {path: ':id/edit', component: RecipeEditComponent}
+      {path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard]}
     ]
   },
   {path: 'shopping-list', component: ShoppingListComponent},
-  {path: '**', redirectTo: '/recipes/0/edit'}
+  {path: 'signup', component: SignupComponent},
+  {path: 'signin', component: SigninComponent},
+  {path: '**', redirectTo: 'recipes'}
 ];
 
 @NgModule({

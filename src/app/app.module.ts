@@ -15,6 +15,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
 import {HttpClientModule} from '@angular/common/http';
+import { SignupComponent } from './auth/sigunup/signup.component';
+import { SigninComponent } from './auth/sigunin/signin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {HttpClientModule} from '@angular/common/http';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

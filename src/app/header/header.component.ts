@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {StorageService} from '../services/storage.service';
+import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,9 @@ import {StorageService} from '../services/storage.service';
 })
 export class HeaderComponent {
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService,
+              public authService: AuthService,
+              private router: Router) {
   }
 
   saveData() {
@@ -28,5 +32,10 @@ export class HeaderComponent {
         () => alert('Data has been loaded'),
         (error) => alert('Error when saving recipes: ' + error)
       );
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

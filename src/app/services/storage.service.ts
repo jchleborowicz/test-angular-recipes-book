@@ -6,6 +6,7 @@ import {Ingredient} from '../shared/ingredient.model';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class StorageService {
 
   constructor(private http: HttpClient,
               private shoppingListService: ShoppingListService,
-              private recipesService: RecipesService) {
+              private recipesService: RecipesService,
+              private authService: AuthService) {
   }
 
   saveData(): Observable<any> {
@@ -28,11 +30,11 @@ export class StorageService {
       'ingredients': ingredients
     };
 
-    return this.http.put(this.serviceUrl, data);
+    return this.http.put(this.createServiceUrl(), data);
   }
 
   fetchData(): Observable<any> {
-    return this.http.get(this.serviceUrl)
+    return this.http.get(this.createServiceUrl())
       .pipe(
         map(data => {
           const recipes: Recipe[] = data['recipes'];
@@ -47,5 +49,10 @@ export class StorageService {
           this.shoppingListService.setIngredients(data['ingredients']);
         })
       );
+  }
+
+  private createServiceUrl() {
+    const token: string = this.authService.getToken();
+    return this.serviceUrl + '?auth=' + token;
   }
 }
