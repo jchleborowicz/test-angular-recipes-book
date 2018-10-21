@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {StorageService} from '../services/storage.service';
-import {AuthService} from '../auth/auth.service';
+import {StorageService} from '../../shared/storage.service';
+import {AuthService} from '../../auth/auth.service';
 import {Router} from '@angular/router';
 
 @Component({

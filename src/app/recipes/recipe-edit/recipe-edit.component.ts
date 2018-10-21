@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {RecipesService} from '../../services/recipes.service';
 import {Recipe} from '../../shared/recipe.model';
 import {Ingredient} from '../../shared/ingredient.model';
@@ -63,6 +63,10 @@ export class RecipeEditComponent implements OnInit {
         recipe.ingredients.map(it => RecipeEditComponent.createIngredientsFormGroup(it))
       )
     });
+  }
+
+  ingredientControls(): AbstractControl[] {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 
   private getValues(): Recipe {
